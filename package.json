@@ -1,0 +1,11 @@
+{
+  "name": "whats_cooking",
+  "version": "0.0.1",
+  "email": "kelvinabrokwa@gmail.com",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "htmlparser2": "^3.8.2",
+    "jsdom": "^3.1.0",
+    "request": "^2.51.0"
+  }
+}
