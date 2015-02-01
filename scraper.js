@@ -3,7 +3,6 @@ var moment = require('moment');
 
 //var day_of_week = moment().format('dddd').toLowerCase();
 var day_of_week = 'monday';
-var raw_meals;
 var sadler_url = 'https://m.dining.wm.edu/images/WeeklyMenu_tcm904-29345.htm'
 
 var weekday = {
@@ -46,13 +45,19 @@ function cleanData() {
             return meal //.trim();
         };
     });
-    clean_arr = [];
+    full_list = [];
     for (var index in arr) {
         if (arr[index]) {
-            clean_arr.push(arr[index])
+            full_list.push(arr[index])
         }
     }
-    console.log(clean_arr);
+    console.log(full_list);
 }
 
+function organizeData() {
+    pass;
+}
+
+var full_list, raw_meals;
 getParse(sadler_url, cleanData);
+
