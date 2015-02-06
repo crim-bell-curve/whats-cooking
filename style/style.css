@@ -1,0 +1,24 @@
+body {
+	font-family: lane_-_narrowregular;
+	margin: 0;
+}
+
+#breakfast {
+	background-color: #6AD0E1;
+	color: #FFFFFF;
+}
+
+#lunch {
+	background-color: #E5CE89;
+	color: #FFFFFF;
+}
+
+#dinner {
+	background-color: #B76AB4;
+	color: #FFFFFF;
+}
+
+#late_night {
+	background-color: #000000;
+	color: #FFFFFF;
+}
