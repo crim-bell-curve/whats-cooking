@@ -1,3 +1,6 @@
+// Written by: Kelvin Abrokwa-Johnson
+// Scrapes dining hall data from https://m.dining.wm.edu/ (the non-mobile version doesn't work)
+
 var jsdom = require('jsdom');
 var moment = require('moment');
 
