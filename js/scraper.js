@@ -4,10 +4,11 @@
 var jsdom = require('jsdom');
 var moment = require('moment');
 
-var day_of_week = moment().format('dddd').toLowerCase();
+//var day_of_week = moment().format('dddd').toLowerCase();
+var day_of_week = 'monday'
 var sadler_url = 'https://m.dining.wm.edu/images/WeeklyMenu_tcm904-29345.htm';
 
-function getParse(dhall_url, callback) {
+function getData(dhall_url, callback) {
     jsdom.env({
         url: dhall_url,
         scripts: ['http://code.jquery.com/jquery.js'],
@@ -37,7 +38,6 @@ function cleanData() {
     var temp = full_list[0].split(' ');
     full_list[0] = temp[0]; 
     full_list.splice(1, 0, temp[1]);
-
 
     var bf = full_list.indexOf('BREAKFAST'),
         ln = full_list.indexOf('LUNCH'),
@@ -73,8 +73,12 @@ function cleanData() {
         }
     }
     console.log(obj)
+
 }
 
-var full_list, organized, raw_meals, breakfast, lunch, dinner;
+var full_list, organized, raw_meals, breakfast, lunch, dinner, result;
 
-getParse(sadler_url, cleanData);
+getData(sadler_url, cleanData);
+
+
+

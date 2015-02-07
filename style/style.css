@@ -1,8 +1,16 @@
+/*
+ *	Colors: http://www.colourlovers.com/palette/3644545/Lets_Jet;
+ *  Font: http://www.fontsquirrel.com/fonts/Lane
+ */
+
 body {
 	font-family: lane_-_narrowregular;
 	margin: 0;
 }
 
+.outer {
+	padding: 5%;
+}
 #breakfast {
 	background-color: #6AD0E1;
 	color: #FFFFFF;
@@ -21,4 +29,8 @@ body {
 #late_night {
 	background-color: #000000;
 	color: #FFFFFF;
+}
+
+.text {
+	text-align: center;
 }
