@@ -48,35 +48,36 @@ function cleanData() {
         lunch = full_list.slice(ln+1, dn),
         dinner = full_list.slice(dn+1,lt),
         late_night = full_list.slice(lt+1, full_list.length);
-
-
-    var meals = [breakfast,lunch,dinner,late_night]
-    var stations = ['Dessert', 'Entrée', 'Exhibition', 'Pizza',
+        
+    var meals = [breakfast,lunch,dinner,late_night],
+        meal_names = ['breakfast', 'lunch', 'dinner', 'late_night'],
+        stations = ['Dessert', 'Entrée', 'Exhibition', 'Pizza',
                     'Grill', 'International', 'Salad', 'Soup',
-                    'Vegetarian/Vegan', 'Simple Servings']
-    var obj = {};
-
+                    'Vegetarian/Vegan', 'Simple Servings'],
+        count = 0;
+        
     for (var i in meals) {
-        console.log(meals[i])
         included_stations = []
         for (var j in stations) {
             if (meals[i].indexOf(stations[j]) !== -1) {
                 included_stations.push(stations[j])
             }
         }
-        console.log(included_stations)
-        console.log('===================================================')
+        obj[meal_names[count]] = {}
         for (var k in included_stations) {
             var start = meals[i].indexOf(included_stations[k])
-            var end = meals[i].indexOf(included_stations[k+1]) ? meals[i].indexOf(included_stations[k+1]) : meals[i].length
-            obj[meals[i][included_stations[k]]] = meals[i].slice(start, end);
+            var end = meals[i].indexOf(included_stations[Number(k)+1]) != -1 ? meals[i].indexOf(included_stations[Number(k)+1]) : meals[i].length
+            var station_name = included_stations[k]
+            obj[meal_names[count]][included_stations[k]] = meals[i].slice(start+1,end)
         }
+        count++  
     }
     console.log(obj)
 
 }
 
-var full_list, organized, raw_meals, breakfast, lunch, dinner, result;
+var raw_meals,
+    obj = {}
 
 getData(sadler_url, cleanData);
 
