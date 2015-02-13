@@ -11,7 +11,7 @@ function scrape() {
     //var day_of_week = moment().format('dddd').toLowerCase();
     var day_of_week = 'monday'
     var sadler_url = 'https://m.dining.wm.edu/images/WeeklyMenu_tcm904-29345.htm';
-
+    
     function getData(dhall_url, callback) {
         jsdom.env({
             url: dhall_url,

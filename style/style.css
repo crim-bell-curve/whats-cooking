@@ -11,23 +11,24 @@ body {
 .outer {
 	padding: 5%;
 }
+
 #breakfast {
-	background-color: #6AD0E1;
+	background-color: #BEA8E6;
 	color: #FFFFFF;
 }
 
 #lunch {
-	background-color: #E5CE89;
+	background-color: #84C3C5;
 	color: #FFFFFF;
 }
 
 #dinner {
-	background-color: #B76AB4;
+	background-color: #BD7B99;
 	color: #FFFFFF;
 }
 
 #late_night {
-	background-color: #000000;
+	background-color: #40586F;
 	color: #FFFFFF;
 }
 

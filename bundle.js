@@ -5,48 +5,35 @@
 
 window.addEventListener('load', function() {
 	/*
-	finished = false;
 
-	scraper()
+	scraper(displayData)
 
-	while (!finished) {
-		d3.select('#loading').text('Loading')
-		d3.select('#loading').text('Loading.')
-		d3.select('#loading').text('Loading..')
-		d3.select('#loading').text('Loading...')
-		finished = true
-	}
-
-	console.log('done!')
 	
 	*/
 	var menu = require('./menu.js')
 
-	function displayData(div_name, data_obj) {
-		for (var i in Object.keys(data_obj)) {
-			d3.select(div_name)
-			    .append('div')
-			        .append('p').text(Object.keys(data_obj)[i])
-			    .append('div')
-			    	.append('p').text(data_obj[Object.keys(data_obj)[i]])
-			    	.append('hr')
+	function displayData() {
+		
+		function arrange(div_name, data_obj) {
+			for (var i in Object.keys(data_obj)) {
+				d3.select(div_name)
+				    .append('div')
+				        //.append('p').text(Object.keys(data_obj)[i])
+				        .html('<span style="background-color: black">'+Object.keys(data_obj)[i]+'</span>')
+				        //.style('background-color', 'black')
+				    .append('div')
+				    	.append('p').text(data_obj[Object.keys(data_obj)[i]])
+				    	//.append('hr')
+			}
 		}
+
+		arrange('#breakfast', menu.breakfast);
+		arrange('#lunch', menu.lunch);
+		arrange('#dinner', menu.dinner);
+		arrange('#late_night', menu.late_night);
 	}
 
-	displayData('#breakfast', menu.breakfast);
-	displayData('#lunch', menu.lunch);
-	displayData('#dinner', menu.dinner);
-	displayData('#late_night', menu.late_night);
-	/*
-	d3.select('#breakfast').append('p')
-	    .text(JSON.stringify(menu.breakfast))
-	d3.select('#lunch').append('p')
-	    .text(JSON.stringify(menu.lunch))
-	d3.select('#dinner').append('p')
-	    .text(JSON.stringify(menu.dinner))
-	d3.select('#late_night').append('p')
-	    .text(JSON.stringify(menu.late_night))
-	*/
+	displayData();
 	
 }, false);
 
