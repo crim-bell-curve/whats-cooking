@@ -2,7 +2,7 @@
 // Scrapes dining hall data from https://m.dining.wm.edu/ (the non-mobile version doesn't work)
 
 //module.exports = scrape;
-function scrape() {
+function scrape(callback) {
 
     var jsdom = require('jsdom');
     var moment = require('moment');
@@ -61,18 +61,18 @@ function scrape() {
             obj = {};
 
         for (var i in meals) {
-            included_stations = []
+            included_stations = [];
             for (var j in stations) {
                 if (meals[i].indexOf(stations[j]) !== -1) {
-                    included_stations.push(stations[j])
-                }
-            }
+                    included_stations.push(stations[j]);
+                };
+            };
             obj[meal_names[count]] = {}
             for (var k in included_stations) {
-                var start = meals[i].indexOf(included_stations[k])
-                var end = meals[i].indexOf(included_stations[Number(k)+1]) != -1 ? meals[i].indexOf(included_stations[Number(k)+1]) : meals[i].length
-                var station_name = included_stations[k]
-                obj[meal_names[count]][included_stations[k]] = meals[i].slice(start+1,end)
+                var start = meals[i].indexOf(included_stations[k]);
+                var end = meals[i].indexOf(included_stations[Number(k)+1]) != -1 ? meals[i].indexOf(included_stations[Number(k)+1]) : meals[i].length;
+                var station_name = included_stations[k];
+                obj[meal_names[count]][included_stations[k]] = meals[i].slice(start+1,end);
             }
             count++  
         }
@@ -82,9 +82,6 @@ function scrape() {
     }
 
     var raw_meals;
-
     getData(sadler_url, cleanData);
-
+    callback();
 }
-
-scrape()
