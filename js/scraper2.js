@@ -10,8 +10,6 @@ module.exports = {
 	            var $ = window.$;
 	            $('table #' + day_of_week).each(function() {
 	                raw_meals = ($(this).text());
-	                //console.log(raw_meals)
-	                return raw_meals
 	            });
 	        }
 	    });
