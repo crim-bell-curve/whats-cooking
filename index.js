@@ -1,14 +1,12 @@
 // Building the webpage
 
-//var scraper = require('./js/scraper.js')
 
 window.addEventListener('load', function() {
-	/*
 
-	scraper(displayData)
+	//var scraper = require('./scraper');
 
-	
-	*/
+	//var menu = scraper(displayData);
+
 	var menu = require('./menu.js')
 
 	function displayData() {
