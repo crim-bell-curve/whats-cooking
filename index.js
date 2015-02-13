@@ -18,7 +18,6 @@ window.addEventListener('load', function() {
 				    .replace(/"/g, '')
 				    .replace(/\[/g, '')
 				    .replace(/\]/g, '')
-				console.log(typeof food)
 				d3.select(div_name)
 				    .append('div')
 				        .html('<span style="background-color: black">'+Object.keys(data_obj)[i]+'</span>')
