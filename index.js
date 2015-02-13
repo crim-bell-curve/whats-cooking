@@ -12,14 +12,20 @@ window.addEventListener('load', function() {
 	var menu = require('./menu.js')
 
 	function displayData() {
-		
+
 		function arrange(div_name, data_obj) {
 			for (var i in Object.keys(data_obj)) {
+				var food = JSON.stringify(data_obj[Object.keys(data_obj)[i]])
+				    .replace(/,/g, ', ')
+				    .replace(/"/g, '')
+				    .replace(/\[/g, '')
+				    .replace(/\]/g, '')
+				console.log(typeof food)
 				d3.select(div_name)
 				    .append('div')
 				        .html('<span style="background-color: black">'+Object.keys(data_obj)[i]+'</span>')
 				    .append('div')
-				    	.append('p').text(data_obj[Object.keys(data_obj)[i]])
+				    	.append('p').text(food)
 			}
 		}
 
