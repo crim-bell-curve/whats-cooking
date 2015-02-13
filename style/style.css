@@ -9,7 +9,7 @@ body {
 }
 
 .outer {
-	padding: 5%;
+	padding: 7%;
 }
 
 #breakfast {
@@ -34,4 +34,6 @@ body {
 
 .text {
 	text-align: center;
+	font-size: 25;
+	text-decoration: underline;
 }
