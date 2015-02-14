@@ -1,21 +1,20 @@
-// Written by: Kelvin Abrokwa-Johnson
-// Scrapes dining hall data from https://m.dining.wm.edu/ (the non-mobile version doesn't work)
+/*
+ * Scrapes dining hall menu from https://dining.wm.edu/ 
+ */
 
-//module.exports = scrape;
 function scrape(callback) {
 
     var jsdom = require('jsdom');
     var moment = require('moment');
 
-    //var day_of_week = moment().format('dddd').toLowerCase();
-    var day_of_week = 'monday'
+    var day_of_week = moment().format('dddd').toLowerCase();
     var sadler_url = 'https://m.dining.wm.edu/images/WeeklyMenu_tcm904-29345.htm';
 
     function getData(dhall_url, callback) {
         jsdom.env({
             url: dhall_url,
             scripts: ['http://code.jquery.com/jquery.js'],
-            done: function (errors, window) {
+            done: function (error, window) {
                 var $ = window.$;
                 $('table #' + day_of_week).each(function() {
                     raw_meals = ($(this).text());
@@ -80,8 +79,6 @@ function scrape(callback) {
         return obj
 
     }
-
-    var raw_meals;
     getData(sadler_url, cleanData);
     callback();
 }
