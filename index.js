@@ -36,21 +36,30 @@ window.addEventListener('load', function() {
         arrange('#late_night', menu.late_night);
     }
 
-    d3.select('#caf_btn').on('click', function() {
-        d3.select('#sadler_btn').style({'color': '$fff','background-color': '#000'})
-        d3.select('#caf_btn').style({'color': '#000', 'background-color': '#DCC197'})
+
+    function clickCaf() {
+        d3.selectAll('.menu_item').remove();
+        d3.select('#sadler_btn').style({'color': '$fff','background-color': '#000'});
+        d3.select('#caf_btn').style({'color': '#000', 'background-color': '#DCC197'});
 
         displayData(caf_menu);
+    }
 
-        d3.event.stopPropagation();
-    })
-
-    d3.select('#sadler_btn').on('click', function() {
+    function clickSadler() {
+        d3.selectAll('.menu_item').remove();
         d3.select('#caf_btn').style({'color': '$fff','background-color': '#000'})
         d3.select('#sadler_btn').style({'color': '#000', 'background-color': '#DCC197'})
         
         displayData(sadler_menu);
+    }
 
+
+    d3.select('#caf_btn').on('click', function() {
+        clickCaf();
+        d3.event.stopPropagation();
+    })
+    d3.select('#sadler_btn').on('click', function() {
+        clickSadler();
         d3.event.stopPropagation();
     })
 
