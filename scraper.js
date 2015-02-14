@@ -2,13 +2,13 @@
  * Scrapes dining hall menu from https://dining.wm.edu/ 
  */
 
-function scrape(callback) {
+function scrape() {
 
-    var jsdom = require('jsdom');
-    var moment = require('moment');
-
-    var day_of_week = moment().format('dddd').toLowerCase();
-    var sadler_url = 'https://m.dining.wm.edu/images/WeeklyMenu_tcm904-29345.htm';
+    var jsdom = require('jsdom'),
+        moment = require('moment'),
+        day_of_week = moment().format('dddd').toLowerCase();
+    
+    var sadler_url = 'https://dining.wm.edu//images/WeeklyMenu_tcm903-2231.htm';
 
     function getData(dhall_url, callback) {
         jsdom.env({
@@ -70,15 +70,15 @@ function scrape(callback) {
             for (var k in included_stations) {
                 var start = meals[i].indexOf(included_stations[k]);
                 var end = meals[i].indexOf(included_stations[Number(k)+1]) != -1 ? meals[i].indexOf(included_stations[Number(k)+1]) : meals[i].length;
-                var station_name = included_stations[k];
                 obj[meal_names[count]][included_stations[k]] = meals[i].slice(start+1,end);
             }
             count++  
         }
-        console.log(obj)
-        return obj
 
+        console.log(obj);
+        return obj;
     }
-    getData(sadler_url, cleanData);
-    callback();
+    
+    getData(sadler_url,cleanData);
 }
+scrape();

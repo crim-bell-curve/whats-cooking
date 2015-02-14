@@ -4,9 +4,15 @@
 
 window.addEventListener('load', function() {
 
-    var menu = require('./menu.js')
+    var sadler_menu = require('./sadler_menu.js'),
+        caf_menu = require('./caf_menu'),
+        moment = require('moment');
 
-    function displayData() {
+    d3.select('#day')
+        .text(moment().format('dddd'))
+        .style({'font-size': 25})
+    
+    function displayData(menu) {
 
         function arrange(div_name, data_obj) {
             for (var i in Object.keys(data_obj)) {
@@ -17,9 +23,11 @@ window.addEventListener('load', function() {
                     .replace(/\]/g, '')
                 d3.select(div_name)
                     .append('div')
-                        .html('<span style="background-color: black">'+Object.keys(data_obj)[i]+'</span>')
+                        .attr('class', 'menu_item') ///////////////////////////////////////
+                        .html('<span style="color: black">'+Object.keys(data_obj)[i]+'</span>')
                     .append('div')
                         .append('p').text(food)
+                        .attr('class', 'menu_item') ///////////////////////////////////////
             }
         }
         arrange('#breakfast', menu.breakfast);
@@ -27,7 +35,23 @@ window.addEventListener('load', function() {
         arrange('#dinner', menu.dinner);
         arrange('#late_night', menu.late_night);
     }
-    displayData();
-    
-}, false);
 
+    d3.select('#caf_btn').on('click', function() {
+        d3.select('#sadler_btn').style({'color': '$fff','background-color': '#000'})
+        d3.select('#caf_btn').style({'color': '#000', 'background-color': '#DCC197'})
+
+        displayData(caf_menu);
+
+        d3.event.stopPropagation();
+    })
+
+    d3.select('#sadler_btn').on('click', function() {
+        d3.select('#caf_btn').style({'color': '$fff','background-color': '#000'})
+        d3.select('#sadler_btn').style({'color': '#000', 'background-color': '#DCC197'})
+        
+        displayData(sadler_menu);
+
+        d3.event.stopPropagation();
+    })
+
+}, false);

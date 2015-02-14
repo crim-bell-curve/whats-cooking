@@ -8,28 +8,45 @@ body {
     margin: 0;
 }
 
+.btn_container {
+    line-height: 3em;
+}
+
+.btn {
+    width:50%;
+    color: #FFF;
+    text-align: center;
+    background-color: #000;
+    float: left;
+}
+
+.btn:hover {
+    background-color: #DCC197;
+    color: #000;
+}
+
 .outer {
     padding: 7%;
 }
 
 #breakfast {
     background-color: #BEA8E6;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 #lunch {
     background-color: #84C3C5;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 #dinner {
     background-color: #BD7B99;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 #late_night {
     background-color: #40586F;
-    color: #FFFFFF;
+    color: #FFF;
 }
 
 .text {
@@ -37,3 +54,4 @@ body {
     font-size: 25;
     text-decoration: underline;
 }
+

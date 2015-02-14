@@ -23,6 +23,7 @@ function getLink(dining_hall) {
             })
             for (var i in links) {
                 if (links[i].indexOf('/images/Weekly') > -1) {
+                    console.log('https://dining.wm.edu/' + links[i])
                     return 'https://dining.wm.edu/' + links[i];
                 };
             };          
@@ -30,3 +31,4 @@ function getLink(dining_hall) {
     })
 }
 
+getLink('caf')
