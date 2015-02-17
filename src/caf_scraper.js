@@ -74,4 +74,6 @@ function scrape() {
     
     getData(caf_url,cleanData);
 }
-scrape()
+
+module.exports = scrape
+

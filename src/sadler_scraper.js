@@ -81,4 +81,6 @@ function scrape() {
     
     getData(sadler_url,cleanData);
 }
-scrape();
+
+module.exports = scrape
+

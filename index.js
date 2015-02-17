@@ -52,6 +52,7 @@ window.addEventListener('load', function() {
     }
 
     clickCaf();
+    
     d3.select('#caf_btn').on('click', function() {
         clickCaf();
         d3.event.stopPropagation();

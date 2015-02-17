@@ -15,11 +15,11 @@ var moment = require('moment');
 
 var log = JSON.parse(String(fs.readFileSync('./data/log.json')));
 var today = moment().format('dddd').toLowerCase();
+
 if (today !== log.current) {
-	// scrape today's data
+	fetchData()
 	log.current = today;
 	fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log))	
-
 }
 app.use(express.static(__dirname + "/"));
 
@@ -33,3 +33,10 @@ var server = app.listen(port, function () {
     var host = server.address().address
     console.log('Example app listening at http://%s:%s', host, port)
 })
+
+function fetchData() {
+	var scrape_sadler = require('./src/sadler_scraper.js'),
+		scrape_caf = require('./src/caf_scraper.js');
+	console.log(scrape_caf())
+	//fs.writeFile(__dirname + '/data/temp.json', scrape_caf())
+}
