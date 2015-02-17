@@ -14,15 +14,15 @@ body {
 
 .btn {
     width:50%;
-    color: #FFF;
-    text-align: center;
-    background-color: #000;
     float: left;
+    text-align: center;
+    color: #FFF;
+    background-color: #000;
 }
 
 .btn:hover {
     background-color: #DCC197;
-    color: #000;
+    color: #FFF;
 }
 
 .outer {

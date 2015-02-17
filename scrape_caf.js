@@ -1,14 +1,9 @@
-/*
- * Scrapes dining hall menu from https://dining.wm.edu/ 
- */
-
 function scrape() {
+	var jsdom = require('jsdom'),
+		moment = require('moment'),
+		day_of_week = moment().format('dddd').toLowerCase();
 
-    var jsdom = require('jsdom'),
-        moment = require('moment'),
-        day_of_week = moment().format('dddd').toLowerCase();
-    
-    var sadler_url = 'https://dining.wm.edu/images/WeeklyMenu_tcm903-2231.htm';
+    var caf_url = 'https://dining.wm.edu/images/WeeklyMenu_tcm903-34262.htm';
 
     function getData(dhall_url, callback) {
         jsdom.env({
@@ -43,15 +38,13 @@ function scrape() {
 
         var bf = full_list.indexOf('BREAKFAST'),
             ln = full_list.indexOf('LUNCH'),
-            dn = full_list.indexOf('DINNER'),
-            lt = full_list.indexOf('LATE NIGHT');
+            dn = full_list.indexOf('DINNER');
 
         var breakfast = full_list.slice(bf+1,ln),
             lunch = full_list.slice(ln+1, dn),
-            dinner = full_list.slice(dn+1,lt),
-            late_night = full_list.slice(lt+1, full_list.length);
+            dinner = full_list.slice(dn+1,full_list.length);
             
-        var meals = [breakfast,lunch,dinner,late_night],
+        var meals = [breakfast,lunch,dinner],
             meal_names = ['breakfast', 'lunch', 'dinner', 'late_night'],
             stations = ['Dessert', 'Entrée', 'Exhibition', 'Pizza',
                         'Grill', 'International', 'Salad', 'Soup',
@@ -79,6 +72,6 @@ function scrape() {
         return obj;
     }
     
-    getData(sadler_url,cleanData);
+    getData(caf_url,cleanData);
 }
-scrape();
+scrape()

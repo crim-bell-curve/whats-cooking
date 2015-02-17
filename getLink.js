@@ -1,5 +1,6 @@
 /*
- * Get the current Sadler url
+ * Get the current menu url
+ * Takes one argument (string), either 'sadler' or 'caf'
  */
 
 function getLink(dining_hall) {

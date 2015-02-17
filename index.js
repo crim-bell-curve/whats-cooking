@@ -33,7 +33,7 @@ window.addEventListener('load', function() {
         arrange('#breakfast', menu.breakfast);
         arrange('#lunch', menu.lunch);
         arrange('#dinner', menu.dinner);
-        arrange('#late_night', menu.late_night);
+        if (menu.late_night) arrange('#late_night', menu.late_night); 
     }
 
 
@@ -41,7 +41,6 @@ window.addEventListener('load', function() {
         d3.selectAll('.menu_item').remove();
         d3.select('#sadler_btn').style({'color': '$fff','background-color': '#000'});
         d3.select('#caf_btn').style({'color': '#000', 'background-color': '#DCC197'});
-
         displayData(caf_menu);
     }
 
@@ -49,11 +48,10 @@ window.addEventListener('load', function() {
         d3.selectAll('.menu_item').remove();
         d3.select('#caf_btn').style({'color': '$fff','background-color': '#000'})
         d3.select('#sadler_btn').style({'color': '#000', 'background-color': '#DCC197'})
-        
         displayData(sadler_menu);
     }
 
-
+    clickCaf();
     d3.select('#caf_btn').on('click', function() {
         clickCaf();
         d3.event.stopPropagation();
