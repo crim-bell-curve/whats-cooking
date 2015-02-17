@@ -12,20 +12,17 @@
 var express = require('express')
 var app = express()
 
-app.use("/style", express.static(__dirname + '/style'));
-app.use('/bundle.js', express.static(__dirname + '/bundle.js'))
-app.use('/data', express.static(__dirname + '/data'));
+app.use(express.static(__dirname + "/"));
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html')
-
 })
 
-var server = app.listen(3000, function () {
+var port = process.env.PORT || 5000
+
+var server = app.listen(port, function () {
 
     var host = server.address().address
-    var port = server.address().port
-    console.log(host)
     console.log('Example app listening at http://%s:%s', host, port)
 
 })
