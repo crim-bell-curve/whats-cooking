@@ -32,4 +32,8 @@ function getLink(dining_hall) {
     })
 }
 
-getLink('caf')
+module.exports = {
+    caf: getLink('caf'),
+    sadler: getLink('sadler')
+
+}
