@@ -4,8 +4,8 @@
 
 window.addEventListener('load', function() {
 
-    var sadler_menu = require('./sadler_menu.js'),
-        caf_menu = require('./caf_menu'),
+    var sadler_menu = require('./data/sadler_menu.js'),
+        caf_menu = require('./data/caf_menu'),
         moment = require('moment');
 
     d3.select('#day')

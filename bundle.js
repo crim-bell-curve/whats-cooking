@@ -135,14 +135,142 @@ module.exports = { breakfast:
         'Citrus Spiced Lentil Salad' ] } }
 
 },{}],2:[function(require,module,exports){
+module.exports = { breakfast: 
+   { 'Entrée': 
+      [ 'Oatmeal',
+        'Scrambled  Eggs',
+        'Buttermilk Pancakes',
+        'Hard Cooked Cage Free Egg' ],
+     Exhibition: [ 'Omelet Station' ],
+     Pizza: [ 'Breakfast Biscuit with Egg & Bacon' ] },
+  lunch: 
+   { 'Entrée': 
+      [ 'Beef Stroganoff over Mashed Red Potatoes',
+        'Fresh Grilled Vegetables' ],
+     Exhibition: 
+      [ 'Whole Wheat Rotini',
+        'Fusilli',
+        'Spaghetti Sauce with Tomato Bits',
+        'Bechamel Sauce',
+        'Trainwreck Pasta Casserette',
+        'Garlic Parmesan Breadsticks',
+        'Grill',
+        'Crispy Chicken Sandwich',
+        'Turkey Reuben Melt',
+        'French  Fries',
+        'International',
+        'Grilled Fiesta Lime Chicken Fajita',
+        'Vegetarian Fajitas',
+        'Light Sour Cream',
+        'Sliced Jalapeno Peppers',
+        'Black Bean & Corn Salad' ],
+     Pizza: [],
+     Grill: 
+      [ 'Crispy Chicken Sandwich',
+        'Turkey Reuben Melt',
+        'French  Fries' ],
+     International: 
+      [ 'Grilled Fiesta Lime Chicken Fajita',
+        'Vegetarian Fajitas',
+        'Light Sour Cream',
+        'Sliced Jalapeno Peppers',
+        'Black Bean & Corn Salad',
+        'Pizza',
+        'Flatbread Pizza Bar' ],
+     Salad: 
+      [ 'Salad Bar Station',
+        'Arrugla Salad w/Serrano Ham&Melon',
+        'Caesar Salad Bar' ],
+     Soup: [ 'Chicken Ditalini Soup', 'Carrot and Coriander Soup' ],
+     'Vegetarian/Vegan': 
+      [ 'Fried Tortilla Chips',
+        'Hummus',
+        'Couscous Pepper, Olive & Pine Nut Salad',
+        'White Bean & Caramelized Onion Salad',
+        'Curried Vegetable  Salad',
+        'Tropical Salsa',
+        'Pico de Gallo',
+        'Fruit Smoothie',
+        'Tunisian Vegetable Stew w/ Almonds',
+        'Couscous',
+        'Baked  Potato',
+        'Vegetarian Chili',
+        'Green Lentils',
+        'Steamed Fresh Sweet Potatoes',
+        'Farmer\'s Market Vegetable Medley' ],
+     'Simple Servings': 
+      [ 'Kansas City  BBQ Beef',
+        'Sweet Potato French Fries',
+        'Southern Cole Slaw' ] },
+  dinner: 
+   { 'Entrée': 
+      [ 'Maple-Glazed Roast Pork Loin',
+        'Long Grain & Wild Rice',
+        'Balsamic Roast Vegetables' ],
+     Exhibition: 
+      [ 'Whole Wheat Rotini',
+        'Fusilli',
+        'Spaghetti Sauce with Tomato Bits',
+        'Bechamel Sauce',
+        'Grill',
+        'Grilled Chicken Breast, Random',
+        'Bratwurst, Raw, 4:1',
+        'Shoestring French  Fries',
+        'International',
+        'Grilled Fiesta Lime Chicken Fajita',
+        'Vegetarian Fajitas',
+        'Light Sour Cream',
+        'Sliced Jalapeno Peppers',
+        'Black Bean & Corn Salad' ],
+     Pizza: [],
+     Grill: 
+      [ 'Grilled Chicken Breast, Random',
+        'Bratwurst, Raw, 4:1',
+        'Shoestring French  Fries' ],
+     International: 
+      [ 'Grilled Fiesta Lime Chicken Fajita',
+        'Vegetarian Fajitas',
+        'Light Sour Cream',
+        'Sliced Jalapeno Peppers',
+        'Black Bean & Corn Salad',
+        'Pizza',
+        'Flatbread Pizza Bar' ],
+     Salad: 
+      [ 'Salad Bar Station',
+        'Arrugla Salad w/Serrano Ham&Melon',
+        'Caesar Salad Bar' ],
+     Soup: [ 'Chicken Ditalini Soup', 'Carrot and Coriander Soup' ],
+     'Vegetarian/Vegan': 
+      [ 'Fried Tortilla Chips',
+        'Hummus',
+        'Green Onion & Tomato Hummus',
+        'Couscous Pepper, Olive & Pine Nut Salad',
+        'White Bean & Caramelized Onion Salad',
+        'Curried Vegetable  Salad',
+        'Tropical Salsa',
+        'Pico de Gallo',
+        'Fruit Smoothie',
+        'Veg Chili Macaroni Dinner Plate',
+        'Tofu Fried Rice',
+        'Vegetarian Chili',
+        'Baked Sweet Potato',
+        'Green Lentils',
+        'Cajun Spiced Roasted Potatoes',
+        'Farmer\'s Market Vegetable Medley' ],
+     'Simple Servings': 
+      [ 'Pork Cutlet, Raw, 4 oz',
+        'Aromatic Basmati Rice',
+        'Whole Green Beans' ] },
+  late_night: { 'Entrée': [ 'House Taco Bar' ] } }
+},{}],3:[function(require,module,exports){
 /*
  * Build the webpage
  */
 
 window.addEventListener('load', function() {
 
-    var sadler_menu = require('./sadler_menu.js'),
-        caf_menu = require('./caf_menu'),
+    var sadler_menu = require('./data/sadler_menu.js'),
+        caf_menu = require('./data/caf_menu'),
         moment = require('moment');
 
     d3.select('#day')
@@ -160,11 +288,11 @@ window.addEventListener('load', function() {
                     .replace(/\]/g, '')
                 d3.select(div_name)
                     .append('div')
-                        .attr('class', 'menu_item') ///////////////////////////////////////
+                        .attr('class', 'menu_item')
                         .html('<span style="color: black">'+Object.keys(data_obj)[i]+'</span>')
                     .append('div')
                         .append('p').text(food)
-                        .attr('class', 'menu_item') ///////////////////////////////////////
+                        .attr('class', 'menu_item')
             }
         }
         arrange('#breakfast', menu.breakfast);
@@ -174,12 +302,12 @@ window.addEventListener('load', function() {
     }
 
 
-    function clickCaf() {
+    (function clickCaf() {
         d3.selectAll('.menu_item').remove();
         d3.select('#sadler_btn').style({'color': '$fff','background-color': '#000'});
         d3.select('#caf_btn').style({'color': '#000', 'background-color': '#DCC197'});
         displayData(caf_menu);
-    }
+    }())
 
     function clickSadler() {
         d3.selectAll('.menu_item').remove();
@@ -188,7 +316,6 @@ window.addEventListener('load', function() {
         displayData(sadler_menu);
     }
 
-    clickCaf();
     d3.select('#caf_btn').on('click', function() {
         clickCaf();
         d3.event.stopPropagation();
@@ -200,7 +327,7 @@ window.addEventListener('load', function() {
 
 }, false);
 
-},{"./caf_menu":1,"./sadler_menu.js":4,"moment":3}],3:[function(require,module,exports){
+},{"./data/caf_menu":1,"./data/sadler_menu.js":2,"moment":4}],4:[function(require,module,exports){
 (function (global){
 //! moment.js
 //! version : 2.9.0
@@ -3247,132 +3374,4 @@ window.addEventListener('load', function() {
 }).call(this);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],4:[function(require,module,exports){
-module.exports = { breakfast: 
-   { 'Entrée': 
-      [ 'Oatmeal',
-        'Scrambled  Eggs',
-        'Buttermilk Pancakes',
-        'Hard Cooked Cage Free Egg' ],
-     Exhibition: [ 'Omelet Station' ],
-     Pizza: [ 'Breakfast Biscuit with Egg & Bacon' ] },
-  lunch: 
-   { 'Entrée': 
-      [ 'Beef Stroganoff over Mashed Red Potatoes',
-        'Fresh Grilled Vegetables' ],
-     Exhibition: 
-      [ 'Whole Wheat Rotini',
-        'Fusilli',
-        'Spaghetti Sauce with Tomato Bits',
-        'Bechamel Sauce',
-        'Trainwreck Pasta Casserette',
-        'Garlic Parmesan Breadsticks',
-        'Grill',
-        'Crispy Chicken Sandwich',
-        'Turkey Reuben Melt',
-        'French  Fries',
-        'International',
-        'Grilled Fiesta Lime Chicken Fajita',
-        'Vegetarian Fajitas',
-        'Light Sour Cream',
-        'Sliced Jalapeno Peppers',
-        'Black Bean & Corn Salad' ],
-     Pizza: [],
-     Grill: 
-      [ 'Crispy Chicken Sandwich',
-        'Turkey Reuben Melt',
-        'French  Fries' ],
-     International: 
-      [ 'Grilled Fiesta Lime Chicken Fajita',
-        'Vegetarian Fajitas',
-        'Light Sour Cream',
-        'Sliced Jalapeno Peppers',
-        'Black Bean & Corn Salad',
-        'Pizza',
-        'Flatbread Pizza Bar' ],
-     Salad: 
-      [ 'Salad Bar Station',
-        'Arrugla Salad w/Serrano Ham&Melon',
-        'Caesar Salad Bar' ],
-     Soup: [ 'Chicken Ditalini Soup', 'Carrot and Coriander Soup' ],
-     'Vegetarian/Vegan': 
-      [ 'Fried Tortilla Chips',
-        'Hummus',
-        'Couscous Pepper, Olive & Pine Nut Salad',
-        'White Bean & Caramelized Onion Salad',
-        'Curried Vegetable  Salad',
-        'Tropical Salsa',
-        'Pico de Gallo',
-        'Fruit Smoothie',
-        'Tunisian Vegetable Stew w/ Almonds',
-        'Couscous',
-        'Baked  Potato',
-        'Vegetarian Chili',
-        'Green Lentils',
-        'Steamed Fresh Sweet Potatoes',
-        'Farmer\'s Market Vegetable Medley' ],
-     'Simple Servings': 
-      [ 'Kansas City  BBQ Beef',
-        'Sweet Potato French Fries',
-        'Southern Cole Slaw' ] },
-  dinner: 
-   { 'Entrée': 
-      [ 'Maple-Glazed Roast Pork Loin',
-        'Long Grain & Wild Rice',
-        'Balsamic Roast Vegetables' ],
-     Exhibition: 
-      [ 'Whole Wheat Rotini',
-        'Fusilli',
-        'Spaghetti Sauce with Tomato Bits',
-        'Bechamel Sauce',
-        'Grill',
-        'Grilled Chicken Breast, Random',
-        'Bratwurst, Raw, 4:1',
-        'Shoestring French  Fries',
-        'International',
-        'Grilled Fiesta Lime Chicken Fajita',
-        'Vegetarian Fajitas',
-        'Light Sour Cream',
-        'Sliced Jalapeno Peppers',
-        'Black Bean & Corn Salad' ],
-     Pizza: [],
-     Grill: 
-      [ 'Grilled Chicken Breast, Random',
-        'Bratwurst, Raw, 4:1',
-        'Shoestring French  Fries' ],
-     International: 
-      [ 'Grilled Fiesta Lime Chicken Fajita',
-        'Vegetarian Fajitas',
-        'Light Sour Cream',
-        'Sliced Jalapeno Peppers',
-        'Black Bean & Corn Salad',
-        'Pizza',
-        'Flatbread Pizza Bar' ],
-     Salad: 
-      [ 'Salad Bar Station',
-        'Arrugla Salad w/Serrano Ham&Melon',
-        'Caesar Salad Bar' ],
-     Soup: [ 'Chicken Ditalini Soup', 'Carrot and Coriander Soup' ],
-     'Vegetarian/Vegan': 
-      [ 'Fried Tortilla Chips',
-        'Hummus',
-        'Green Onion & Tomato Hummus',
-        'Couscous Pepper, Olive & Pine Nut Salad',
-        'White Bean & Caramelized Onion Salad',
-        'Curried Vegetable  Salad',
-        'Tropical Salsa',
-        'Pico de Gallo',
-        'Fruit Smoothie',
-        'Veg Chili Macaroni Dinner Plate',
-        'Tofu Fried Rice',
-        'Vegetarian Chili',
-        'Baked Sweet Potato',
-        'Green Lentils',
-        'Cajun Spiced Roasted Potatoes',
-        'Farmer\'s Market Vegetable Medley' ],
-     'Simple Servings': 
-      [ 'Pork Cutlet, Raw, 4 oz',
-        'Aromatic Basmati Rice',
-        'Whole Green Beans' ] },
-  late_night: { 'Entrée': [ 'House Taco Bar' ] } }
-},{}]},{},[2]);
+},{}]},{},[3]);
