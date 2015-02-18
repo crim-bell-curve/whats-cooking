@@ -17,9 +17,28 @@ var log = JSON.parse(String(fs.readFileSync('./data/log.json')));
 var today = moment().format('dddd').toLowerCase();
 
 if (today !== log.current) {
-	fetchData()
-	log.current = today;
-	fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log))	
+	
+	var q = require('queue-async')(1);
+	var getLink = require('./src/getLink.js')
+	var scrape_sad = require('./src/sadler_scraper.js')
+	var scrape_caf = require('./src/caf_scraper.js')
+
+	var sadler_current, caf_current;
+
+	q.defer( getLink, 'sadler' )
+	q.defer( scrape_sad, 'https://dining.wm.edu/images/WeeklyMenu_tcm903-29345.htm' )
+	q.defer( getLink, 'caf' )
+	q.defer( scrape_caf, 'https://dining.wm.edu/images/WeeklyMenu_tcm903-29345.htm' )
+	q.awaitAll(done)
+
+	function done(err, results) {
+		console.log(results);
+		fs.writeFile(__dirname + '/data/sadler_menu.js', 'module.exports = ' + JSON.stringify(results[1]))
+		fs.writeFile(__dirname + '/data/caf_menu.js', 'module.exports = ' + JSON.stringify(results[3]))
+		log.current = today;
+		fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log))	
+		
+	}
 }
 app.use(express.static(__dirname + "/"));
 
@@ -33,10 +52,3 @@ var server = app.listen(port, function () {
     var host = server.address().address
     console.log('Example app listening at http://%s:%s', host, port)
 })
-
-function fetchData() {
-	var scrape_sadler = require('./src/sadler_scraper.js'),
-		scrape_caf = require('./src/caf_scraper.js');
-	console.log(scrape_caf())
-	//fs.writeFile(__dirname + '/data/temp.json', scrape_caf())
-}

@@ -1,11 +1,16 @@
-function scrape() {
-	var jsdom = require('jsdom'),
+/*
+ * Scrapes dining hall menu from https://dining.wm.edu/ - Caf
+ */
+
+module.exports = scrape
+
+function scrape(caf, next) {
+	
+    var jsdom = require('jsdom'),
 		moment = require('moment'),
 		day_of_week = moment().format('dddd').toLowerCase();
 
-    var caf_url = 'https://dining.wm.edu/images/WeeklyMenu_tcm903-34262.htm';
-
-    function getData(dhall_url, callback) {
+    (function getData(dhall_url, callback) {
         jsdom.env({
             url: dhall_url,
             scripts: ['http://code.jquery.com/jquery.js'],
@@ -17,7 +22,7 @@ function scrape() {
                 });
             }
         });
-    }
+    })(caf, cleanData)
 
     function cleanData() {
         var arr = raw_meals.split('\n');
@@ -67,13 +72,9 @@ function scrape() {
             }
             count++  
         }
-
-        console.log(obj);
-        return obj;
+        //console.log(obj);
+        next(null, obj);
+        //return obj;
     }
     
-    getData(caf_url,cleanData);
 }
-
-module.exports = scrape
-

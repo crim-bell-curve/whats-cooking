@@ -1,16 +1,16 @@
 /*
- * Scrapes dining hall menu from https://dining.wm.edu/ 
+ * Scrapes dining hall menu from https://dining.wm.edu/ - Sadler
  */
 
-function scrape() {
+module.exports = scrape
+
+function scrape(sadler, next) {
 
     var jsdom = require('jsdom'),
         moment = require('moment'),
         day_of_week = moment().format('dddd').toLowerCase();
     
-    var sadler_url = 'https://dining.wm.edu/images/WeeklyMenu_tcm903-2231.htm';
-
-    function getData(dhall_url, callback) {
+    (function getData(dhall_url, callback) {
         jsdom.env({
             url: dhall_url,
             scripts: ['http://code.jquery.com/jquery.js'],
@@ -22,7 +22,7 @@ function scrape() {
                 });
             }
         });
-    }
+    })(sadler,cleanData);
 
     function cleanData() {
         var arr = raw_meals.split('\n');
@@ -74,13 +74,8 @@ function scrape() {
             }
             count++  
         }
-
-        console.log(obj);
-        return obj;
+        //console.log(obj);
+        next(null, obj);
+        //return obj;
     }
-    
-    getData(sadler_url,cleanData);
 }
-
-module.exports = scrape
-

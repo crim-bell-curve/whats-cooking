@@ -3,7 +3,7 @@
  * Takes one argument (string), either 'sadler' or 'caf'
  */
 
-function getLink(dining_hall) {
+function getLink(dining_hall, callback) {
 
     var jsdom = require('jsdom');
 
@@ -24,16 +24,20 @@ function getLink(dining_hall) {
             })
             for (var i in links) {
                 if (links[i].indexOf('/images/Weekly') > -1) {
-                    console.log('https://dining.wm.edu/' + links[i])
-                    return 'https://dining.wm.edu/' + links[i];
+                    //console.log('https://dining.wm.edu/' + links[i])
+                    callback(null, 'https://dining.wm.edu/' + links[i]);
+                    //return 'https://dining.wm.edu/' + links[i];
                 };
             };          
         }
     })
 }
 
+module.exports = getLink
+/*
 module.exports = {
     caf: getLink('caf'),
     sadler: getLink('sadler')
 
 }
+*/
