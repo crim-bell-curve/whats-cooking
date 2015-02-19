@@ -18,45 +18,30 @@ if (today !== log.current) {
 	    getLink = require('./src/getLink.js'),
 		scrape_sad = require('./src/sadler_scraper.js'),
 		scrape_caf = require('./src/caf_scraper.js');
-	
-	q.defer( getLink, 'sadler' );
-	q.defer( scrape_sad, 'https://dining.wm.edu/images/WeeklyMenu_tcm903-29345.htm' );
-	q.defer( getLink, 'caf' );
-	q.defer( scrape_caf, 'https://dining.wm.edu/images/WeeklyMenu_tcm903-29345.htm' );
-	q.awaitAll(done);
 
-	function done(err, results) {
-		console.log(results);
-		fs.writeFile(__dirname + '/data/sadler_menu.js', 'module.exports = ' + JSON.stringify(results[1]));
-		fs.writeFile(__dirname + '/data/caf_menu.js', 'module.exports = ' + JSON.stringify(results[3]));
-		log.current = today;
-		fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log));
+	q.defer(getLink, 'sadler')
+	q.defer(getLink, 'caf')
+	q.awaitAll(use)
+
+	function use(err, results) {
+		
+		console.log('scraping')
+		q.defer(scrape_sad, results[0])
+		q.defer(scrape_caf, results[1])
+		q.awaitAll(build)
+		
+		function build(err, meals) {
+			console.log('writing JSON')
+			fs.writeFile(__dirname + '/data/sadler_menu.js', 'module.exports = ' + JSON.stringify(meals[0]));
+			fs.writeFile(__dirname + '/data/caf_menu.js', 'module.exports = ' + JSON.stringify(meals[1]));
+			log.current = today;
+			fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log));
+			console.log('done!')
+
+		}
 	}
-	
-	/*
-	q.defer( getLink, 'sadler' );
-	q.defer( getLink, 'caf' );
-	q.awaitAll(links_done)
-
-	var sadler_current, caf_current
-	function links_done(err, link_array) {
-		sadler_current = link_array[0]
-		caf_current = link_array[1]
-	}
-
-	q.defer( scrape_sad, sadler_current );
-	q.defer( scrape_caf, caf_current );
-	q.awaitAll(done)
-	function done(err, results) {
-		console.log(results);
-		fs.writeFile(__dirname + '/data/sadler_menu.js', 'module.exports = ' + JSON.stringify(results[1]));
-		fs.writeFile(__dirname + '/data/caf_menu.js', 'module.exports = ' + JSON.stringify(results[3]));
-		log.current = today;
-		fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log));
-	}
-	*/
-
 }
+
 app.use(express.static(__dirname + '/'));
 
 app.get('/', function (req, res) {
