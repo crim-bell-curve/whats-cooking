@@ -8,6 +8,8 @@ window.addEventListener('load', function() {
         caf_menu = require('./data/caf_menu'),
         moment = require('moment');
 
+    console.log(sadler_menu)
+    console.log(caf_menu)
     d3.select('#day')
         .text(moment().format('dddd'))
         .style({'font-size': 25});

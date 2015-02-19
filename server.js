@@ -32,8 +32,8 @@ if (today !== log.current) {
 		
 		function build(err, meals) {
 			console.log('writing JSON')
-			console.log(meals[2])
-			console.log(meals[3])
+			//console.log(meals[2])
+			//console.log(meals[3])
 			fs.writeFile(__dirname + '/data/sadler_menu.js', 'module.exports = ' + JSON.stringify(meals[2]));
 			fs.writeFile(__dirname + '/data/caf_menu.js', 'module.exports = ' + JSON.stringify(meals[3]));
 			log.current = today;
