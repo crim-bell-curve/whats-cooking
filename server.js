@@ -18,7 +18,7 @@ if (today !== log.current) {
 	    getLink = require('./src/getLink.js'),
 		scrape_sad = require('./src/sadler_scraper.js'),
 		scrape_caf = require('./src/caf_scraper.js');
-	/*
+	
 	q.defer( getLink, 'sadler' );
 	q.defer( scrape_sad, 'https://dining.wm.edu/images/WeeklyMenu_tcm903-29345.htm' );
 	q.defer( getLink, 'caf' );
@@ -32,8 +32,8 @@ if (today !== log.current) {
 		log.current = today;
 		fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log));
 	}
-	*/
-
+	
+	/*
 	q.defer( getLink, 'sadler' );
 	q.defer( getLink, 'caf' );
 	q.awaitAll(links_done)
@@ -54,6 +54,7 @@ if (today !== log.current) {
 		log.current = today;
 		fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log));
 	}
+	*/
 
 }
 app.use(express.static(__dirname + '/'));
