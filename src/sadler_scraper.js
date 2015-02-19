@@ -2,7 +2,7 @@
  * Scrapes dining hall menu from https://dining.wm.edu/ - Sadler
  */
 
-module.exports = scrape
+module.exports = scrape;
 
 function scrape(sadler, next) {
 
@@ -10,6 +10,7 @@ function scrape(sadler, next) {
         moment = require('moment'),
         day_of_week = moment().format('dddd').toLowerCase();
     
+    var raw_meals;
     (function getData(dhall_url, callback) {
         jsdom.env({
             url: dhall_url,
@@ -31,12 +32,12 @@ function scrape(sadler, next) {
                 return meal.trim();
             }
         });
-        full_list = [];
+        var full_list = [];
         for (var index in arr) {
             if (arr[index]) {
                 full_list.push(arr[index]);
-            };
-        };
+            }
+        }
         var temp = full_list[0].split(' ');
         full_list[0] = temp[0]; 
         full_list.splice(1, 0, temp[1]);
@@ -60,22 +61,20 @@ function scrape(sadler, next) {
             obj = {};
 
         for (var i in meals) {
-            included_stations = [];
+            var included_stations = [];
             for (var j in stations) {
                 if (meals[i].indexOf(stations[j]) !== -1) {
                     included_stations.push(stations[j]);
-                };
-            };
-            obj[meal_names[count]] = {}
+                }
+            }
+            obj[meal_names[count]] = {};
             for (var k in included_stations) {
                 var start = meals[i].indexOf(included_stations[k]);
                 var end = meals[i].indexOf(included_stations[Number(k)+1]) != -1 ? meals[i].indexOf(included_stations[Number(k)+1]) : meals[i].length;
                 obj[meal_names[count]][included_stations[k]] = meals[i].slice(start+1,end);
             }
-            count++  
+            count++;
         }
-        //console.log(obj);
         next(null, obj);
-        //return obj;
     }
 }

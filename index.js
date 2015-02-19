@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
 
     d3.select('#day')
         .text(moment().format('dddd'))
-        .style({'font-size': 25})
+        .style({'font-size': 25});
     
     function displayData(menu) {
 
@@ -20,14 +20,14 @@ window.addEventListener('load', function() {
                     .replace(/,/g, ', ')
                     .replace(/"/g, '')
                     .replace(/\[/g, '')
-                    .replace(/\]/g, '')
+                    .replace(/\]/g, '');
                 d3.select(div_name)
                     .append('div')
                         .attr('class', 'menu_item')
                         .html('<span style="color: black">'+Object.keys(data_obj)[i]+'</span>')
                     .append('div')
                         .append('p').text(food)
-                        .attr('class', 'menu_item')
+                        .attr('class', 'menu_item');
             }
         }
         arrange('#breakfast', menu.breakfast);
@@ -46,8 +46,8 @@ window.addEventListener('load', function() {
 
     function clickSadler() {
         d3.selectAll('.menu_item').remove();
-        d3.select('#caf_btn').style({'color': '#FFF','background-color': '#000'})
-        d3.select('#sadler_btn').style({'color': '#000', 'background-color': '#DCC197'})
+        d3.select('#caf_btn').style({'color': '#FFF','background-color': '#000'});
+        d3.select('#sadler_btn').style({'color': '#000', 'background-color': '#DCC197'});
         displayData(sadler_menu);
     }
 
@@ -56,10 +56,10 @@ window.addEventListener('load', function() {
     d3.select('#caf_btn').on('click', function() {
         clickCaf();
         d3.event.stopPropagation();
-    })
+    });
     d3.select('#sadler_btn').on('click', function() {
         clickSadler();
         d3.event.stopPropagation();
-    })
+    });
 
 }, false);
