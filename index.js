@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * Build the webpage
  */
@@ -8,14 +10,14 @@ window.addEventListener('load', function() {
         caf_menu = require('./data/caf_menu'),
         moment = require('moment');
 
-    console.log(sadler_menu)
-    console.log(caf_menu)
+    console.log(sadler_menu);
+    console.log(caf_menu);
+
     d3.select('#day')
         .text(moment().format('dddd'))
         .style({'font-size': 25});
     
     function displayData(menu) {
-
         function arrange(div_name, data_obj) {
             for (var i in Object.keys(data_obj)) {
                 var food = JSON.stringify(data_obj[Object.keys(data_obj)[i]])
@@ -35,7 +37,7 @@ window.addEventListener('load', function() {
         arrange('#breakfast', menu.breakfast);
         arrange('#lunch', menu.lunch);
         arrange('#dinner', menu.dinner);
-        if (menu.late_night) arrange('#late_night', menu.late_night); 
+        if (menu.late_night) arrange('#late_night', menu.late_night);
     }
 
 

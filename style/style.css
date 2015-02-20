@@ -49,3 +49,13 @@ body {
     font-size: 25;
     text-decoration: underline;
 }
+
+@media screen and (max-width: 375px) {
+    .text {
+        font-size: 10
+    }
+
+    .btn {
+        font-size: 10
+    }
+}

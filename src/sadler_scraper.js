@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * Scrapes dining hall menu from https://dining.wm.edu/ - Sadler
  */
@@ -51,11 +53,11 @@ function scrape(sadler, next) {
             lunch = full_list.slice(ln+1, dn),
             dinner = full_list.slice(dn+1,lt),
             late_night = full_list.slice(lt+1, full_list.length);
-            
+
         var meals = [breakfast,lunch,dinner,late_night],
             meal_names = ['breakfast', 'lunch', 'dinner', 'late_night'],
-            stations = ['Dessert', 'Entrée', 'Exhibition', 'Pizza',
-                        'Grill', 'International', 'Salad', 'Soup',
+            stations = ['Dessert', 'Entrée', 'Exhibition',
+                        'Grill', 'International', 'Pizza', 'Salad', 'Soup',
                         'Vegetarian/Vegan', 'Simple Servings'],
             count = 0,
             obj = {};

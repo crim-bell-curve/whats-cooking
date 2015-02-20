@@ -1,8 +1,4 @@
-/* 
- * Server for fetching the current lunch menu url for both dining halls
- * and then scraping those menus
- * 
- */
+#!/usr/bin/env node
 
 var express = require('express');
 var app = express();
@@ -19,27 +15,26 @@ if (today !== log.current) {
 		scrape_sad = require('./src/sadler_scraper.js'),
 		scrape_caf = require('./src/caf_scraper.js');
 
-	q.defer(getLink, 'sadler')
-	q.defer(getLink, 'caf')
-	q.awaitAll(use)
+	q.defer(getLink, 'sadler');
+	q.defer(getLink, 'caf');
+	q.awaitAll(use);
 
 	function use(err, results) {
 		
-		console.log('scraping')
-		q.defer(scrape_sad, results[0])
-		q.defer(scrape_caf, results[1])
-		q.awaitAll(build)
+		console.log('scraping');
+		q.defer(scrape_sad, results[0]);
+		q.defer(scrape_caf, results[1]);
+		q.awaitAll(build);
 		
 		function build(err, meals) {
-			console.log('writing JSON')
-			console.log(meals[2])
-			console.log(meals[3])
+			console.log('writing JSON');
+			console.log(meals[2]);
+			console.log(meals[3]);
 			fs.writeFile(__dirname + '/data/sadler_menu.js', 'module.exports = ' + JSON.stringify(meals[2]));
 			fs.writeFile(__dirname + '/data/caf_menu.js', 'module.exports = ' + JSON.stringify(meals[3]));
 			log.current = today;
 			fs.writeFile(__dirname + '/data/log.json', JSON.stringify(log));
-			console.log('done!')
-
+			console.log('done!');
 		}
 	}
 }
