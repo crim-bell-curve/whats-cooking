@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * Get the current menu url
  * Takes one argument (string), either 'sadler' or 'caf'

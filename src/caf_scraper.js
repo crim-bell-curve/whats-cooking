@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * Scrapes dining hall menu from https://dining.wm.edu/ - Caf
  */
@@ -52,18 +54,17 @@ function scrape(caf, next) {
             
         var meals = [breakfast,lunch,dinner],
             meal_names = ['breakfast', 'lunch', 'dinner', 'late_night'],
-            stations = ['Dessert', 'Entrée', 'Exhibition', 'Pizza',
-                        'Grill', 'International', 'Salad', 'Soup',
-                        'Vegetarian/Vegan', 'Simple Servings'],
+            stations = ['Dessert', 'Entrée', 'Exhibition',
+                        'Grill', 'Pizza', 'International', 'Salad', 'Soup',
+                        'Vegetarian/Vegan', 'Simple Servings',  'World Kitchen', 'Chesapeake Kitchen'],
             count = 0,
             obj = {};
 
         for (var i in meals) {
             var included_stations = [];
             for (var j in stations) {
-                if (meals[i].indexOf(stations[j]) !== -1) {
+                if (meals[i].indexOf(stations[j]) !== -1)
                     included_stations.push(stations[j]);
-                }
             }
             obj[meal_names[count]] = {};
             for (var k in included_stations) {
