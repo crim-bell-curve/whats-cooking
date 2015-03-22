@@ -7,6 +7,9 @@ window.addEventListener('load', function() {
   var colors = ['#BEA8E6', '#84C3C5', '#BD7B99', '#40586F']
   function display(menu) {
     var content = d3.select('#content');
+    if (!menu) {
+      content.append('p').text('NOT AVAILABLE. THANKS SODEXO...')
+    }
     var count = 0
     for (var meal in menu) {
       content.append('div')
@@ -32,6 +35,22 @@ window.addEventListener('load', function() {
       }
     }
   }
-  display(caf)
-  display(sadler)
+
+  if (typeof caf !== 'undefined') {
+    display(caf)
+  } else {
+    d3.select('#content')
+      .append('p')
+      .text('CAF NOT AVAILABLE. THANKS SODEXO...')
+      .style('font-size', 50)
+  }
+
+  if (typeof sadler !== 'undefined') {
+    display(sadler)
+  } else {
+    d3.select('#content')
+      .append('p')
+      .text('SADLER NOT AVAILABLE. THANKS SODEXO...')
+      .style('font-size', 50)
+  }
 });
