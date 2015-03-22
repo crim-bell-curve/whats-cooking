@@ -1,12 +1,12 @@
 window.addEventListener('load', function() {
   var now = new Date(),
-      today = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][ now.getDay() ];
+      today = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][ now.getDay() ],
+      colors = ['#BEA8E6', '#84C3C5', '#BD7B99', '#40586F'];
 
-  d3.select('#day')
-    .text(today.toUpperCase())
-  var colors = ['#BEA8E6', '#84C3C5', '#BD7B99', '#40586F']
+  d3.select('#day').text(today.toUpperCase())
+  var content = d3.select('#content');
+  
   function display(menu, name) {
-    var content = d3.select('#content');
     var count = 0
     content.append('p')
       .text(name)
