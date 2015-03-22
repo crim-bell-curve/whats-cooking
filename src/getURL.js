@@ -23,17 +23,17 @@ function getURL(dhall, callback) {
         if (found) return;
         if ($(this).attr('href') !== '#') {
           var range = $(this).text().trim().split('-').map(function(date) {
-            return Number(date.split('/')[1])
+            return Number(date.split('/')[1]);
           })
           for (var i = range[0]; i <= range[1]; i++) {
             if (i == t) {
               callback(null, 'https://dining.wm.edu' + $(this).attr('href'));
               found = true;
-              break            
+              break;         
             }
           }
         }
-      })
+      });
     }
-  })
+  });
 }

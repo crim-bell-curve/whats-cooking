@@ -25,10 +25,13 @@ function scrape(dhall, url) {
           out[meal_name] = {};
           var m = ex;
           m.shift()
+          var station;
           m.forEach(function(arr) {
             if (arr.length === 2) {
-              out[meal_name][arr[0].trim()] = [];
-              out[meal_name][arr[0].trim()].push(arr[1].trim())
+              station = arr[0].trim()
+              out[meal_name][station] = [arr[1].trim()];
+            } else {
+              out[meal_name][station].push(arr[0].trim())
             }
           });
         }
