@@ -1,0 +1,13 @@
+body {
+  font-family: lane_-_narrowregular;
+  margin: 0;
+}
+
+.meal {
+  padding: 2em;
+}
+
+#day {
+  text-align: center;
+  font-size: 3em
+}

@@ -1,69 +1,37 @@
-#!/usr/bin/env node
-
-/*
- * Build the webpage
- */
-
 window.addEventListener('load', function() {
-
-    var sadler_menu = require('./data/sadler_menu.js'),
-        caf_menu = require('./data/caf_menu'),
-        moment = require('moment');
-
-    console.log(sadler_menu);
-    console.log(caf_menu);
-
-    d3.select('#day')
-        .text(moment().format('dddd'))
-        .style({'font-size': 25});
-    
-    function displayData(menu) {
-        function arrange(div_name, data_obj) {
-            for (var i in Object.keys(data_obj)) {
-                var food = JSON.stringify(data_obj[Object.keys(data_obj)[i]])
-                    .replace(/,/g, ', ')
-                    .replace(/"/g, '')
-                    .replace(/\[/g, '')
-                    .replace(/\]/g, '');
-                d3.select(div_name)
-                    .append('div')
-                        .attr('class', 'menu_item')
-                        .html('<span style="color: black">'+Object.keys(data_obj)[i]+'</span>')
-                    .append('div')
-                        .append('p').text(food)
-                        .attr('class', 'menu_item');
-            }
-        }
-        arrange('#breakfast', menu.breakfast);
-        arrange('#lunch', menu.lunch);
-        arrange('#dinner', menu.dinner);
-        if (menu.late_night) arrange('#late_night', menu.late_night);
+  //var fs = require('fs'),
+  var now = new Date(),
+      today = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][ now.getDay() ];
+  //var sadler = JSON.parse(fs.readFileSync('./data/sadler.json', {encoding: 'utf8'})),
+  //var caf = JSON.parse(fs.readFileSync('./data/caf.json', {encoding: 'utf8'}));
+  
+  d3.select('#day')
+    .text(today)
+  var colors = ['#BEA8E6', '#84C3C5', '#BD7B99', '#40586F']
+  function display(menu) {
+    var content = d3.select('#content');
+    var count = 0
+    for (var meal in menu) {
+      content.append('div')
+        .attr('class', 'meal')
+        .attr('id', meal)
+        .style('background-color', colors[count++]);
+      var m = d3.select('#' + meal)
+      m.append('h1').text(meal).style('text-decoration', 'underline');
+      for (var station in menu[meal]) {
+        stat = station.replace(/\//g, '');
+        m.append('div')
+         .attr('class', meal)
+         .attr('id', stat)
+        var s = d3.select('#' + stat)
+        s.append('p')
+          .text(station)
+          .style('color', 'fff')
+        menu[meal][station].forEach(function(item) {
+          s.append('p').text(item);
+        });
+      }
     }
-
-
-    function clickCaf() {
-        d3.selectAll('.menu_item').remove();
-        d3.select('#sadler_btn').style({'color': '#FFF','background-color': '#000'});
-        d3.select('#caf_btn').style({'color': '#000', 'background-color': '#DCC197'});
-        displayData(caf_menu);
-    }
-
-    function clickSadler() {
-        d3.selectAll('.menu_item').remove();
-        d3.select('#caf_btn').style({'color': '#FFF','background-color': '#000'});
-        d3.select('#sadler_btn').style({'color': '#000', 'background-color': '#DCC197'});
-        displayData(sadler_menu);
-    }
-
-    clickCaf();
-
-    d3.select('#caf_btn').on('click', function() {
-        clickCaf();
-        d3.event.stopPropagation();
-    });
-    d3.select('#sadler_btn').on('click', function() {
-        clickSadler();
-        d3.event.stopPropagation();
-    });
-
-}, false);
+  }
+  display({"LUNCH":{"Deli":["Egg & Cheese Biscuit with Sausage"],"Entrée":["Eggs Benedict with Canadian Bacon"],"Grill":["Oatmeal"],"Pizza":["Cheese Pizza"],"Vegetarian/Vegan":["Broccoli Florets"],"Simple Servings":["Maple Peach Glazed Ham"]},"DINNER":{"Deli":["Egg & Cheese Biscuit with Sausage"],"Entrée":["Chicken Tagine"],"Grill":["Classic Cheeseburger on a Toasted Bun"],"International":["Chicken Fried  Rice"],"Pizza":["Cheese Pizza"],"Tastechanger":["Broccoli Pesto Penne Casserette"],"Vegetarian/Vegan":["Indian Potatoes, Peas and Cauliflower"],"Simple Servings":["Grilled Cumin Chicken"]}})
+});

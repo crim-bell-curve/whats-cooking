@@ -4,10 +4,7 @@
   "email": "kelvinabrokwa@gmail.com",
   "dependencies": {
     "express": "^4.11.2",
-    "jsdom": "^3.1.1",
-    "moment": "^2.9.0",
-    "queue-async": "^1.0.7",
-    "request": "^2.53.0"
+    "jsdom": "^3.1.1"
   },
   "main": "server.js"
 }
