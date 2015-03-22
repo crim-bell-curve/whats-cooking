@@ -5,7 +5,7 @@ window.addEventListener('load', function() {
 
   d3.select('#day').text(today.toUpperCase())
   var content = d3.select('#content');
-  
+
   function display(menu, name) {
     var count = 0
     content.append('p')
@@ -17,11 +17,11 @@ window.addEventListener('load', function() {
         .attr('id', meal)
         .style('background-color', colors[count++]);
       var m = d3.select('#' + meal)
-      m.append('h1')
+      m.append('p')
         .text(meal)
-        .style('text-decoration', 'underline');
+        .style({'text-decoration': 'underline', 'font-size': '2.5em'});
       for (var station in menu[meal]) {
-        stat = station.replace(/\//g, '');
+        stat = meal + '-' + station.replace(/\//g, '');
         m.append('div')
           .attr('class', meal)
           .attr('id', stat)
