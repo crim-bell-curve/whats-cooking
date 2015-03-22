@@ -43,7 +43,3 @@ function scrape(dhall, url) {
   }
   getData();
 }
-function test() {
-  scrape('caf', 'https://dining.wm.edu/images/WeeklyMenu_tcm903-2231.htm')
-}
-test()
