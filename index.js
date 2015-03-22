@@ -3,14 +3,14 @@ window.addEventListener('load', function() {
       today = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][ now.getDay() ];
 
   d3.select('#day')
-    .text(today)
+    .text(today.toUpperCase())
   var colors = ['#BEA8E6', '#84C3C5', '#BD7B99', '#40586F']
   function display(menu, name) {
     var content = d3.select('#content');
     var count = 0
-    content.append('h1')
+    content.append('p')
       .text(name)
-      .style({'text-align': 'center', 'font-size': 50, 'background-color': colors[count++]})
+      .style({'text-align': 'center', 'font-size': '3em', 'background-color': colors[count++]})
     for (var meal in menu) {
       content.append('div')
         .attr('class', 'meal')
@@ -37,20 +37,20 @@ window.addEventListener('load', function() {
   }
 
   if (typeof sadler !== 'undefined') {
-    display(sadler, 'Sadler')
+    display(sadler, 'SADLER')
   } else {
     d3.select('#content')
       .append('p')
       .text('SADLER NOT AVAILABLE. THANKS SODEXO...')
-      .style({'font-size': 50, 'text-align': 'center', 'background-color': '#000', 'color': '#fff'})
+      .style({'font-size': '3em', 'text-align': 'center', 'background-color': '#000', 'color': '#fff'})
   }
 
   if (typeof caf !== 'undefined') {
-    display(caf, 'Caf')
+    display(caf, 'CAF')
   } else {
     d3.select('#content')
       .append('p')
       .text('CAF NOT AVAILABLE. THANKS SODEXO...')
-      .style({'font-size': 50, 'text-align': 'center', 'background-color': '#000', 'color': '#fff'})
+      .style({'font-size': '3em', 'text-align': 'center', 'background-color': '#000', 'color': '#fff'})
   }
 });
