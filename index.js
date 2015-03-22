@@ -51,7 +51,6 @@ window.addEventListener('load', function() {
     d3.select('#content')
       .append('p')
       .text('CAF NOT AVAILABLE. THANKS SODEXO...')
-      .style('font-size', 50)
+      .style({'font-size': 50, 'text-align': 'center', 'background-color': '#000', 'color': '#fff'})
   }
-
 });
