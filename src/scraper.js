@@ -1,5 +1,7 @@
 #!/usr/bin/env node
+
 module.exports = scrape
+
 function scrape(dhall, url) {
   var jsdom = require('jsdom'),
       fs = require('fs'),
@@ -40,7 +42,8 @@ function scrape(dhall, url) {
             return;
           getMeal(m);
         });
-        fs.writeFileSync(__dirname + '/../data/' + dhall + '.json', JSON.stringify(out))
+        fs.writeFileSync(__dirname + '/../data/' + dhall + '.js', 'var caf = ' + JSON.stringify(out));
+        //fs.writeFileSync(__dirname + '/../data/log.json', JSON.stringify({current: today}));
       }
     })
   })();
