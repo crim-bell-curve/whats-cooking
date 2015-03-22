@@ -43,7 +43,7 @@ function scrape(dhall, url) {
           getMeal(m);
         });
         fs.writeFileSync(__dirname + '/../data/' + dhall + '.js', 'var caf = ' + JSON.stringify(out));
-        //fs.writeFileSync(__dirname + '/../data/log.json', JSON.stringify({current: today}));
+        fs.writeFileSync(__dirname + '/../data/log.json', JSON.stringify({current: today}));
       }
     })
   })();
