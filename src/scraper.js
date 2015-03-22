@@ -5,7 +5,7 @@ function scrape(dhall, url) {
       fs = require('fs'),
       now = new Date(),
       today = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][ now.getDay() ];
-  function getData() {
+  (function getData() {
     jsdom.env({
       url: url,
       scripts: ['http://code.jquery.com/jquery.js'],
@@ -40,6 +40,5 @@ function scrape(dhall, url) {
         fs.writeFileSync(__dirname + '/../data/' + dhall + '.json', JSON.stringify(out))
       }
     })
-  }
-  getData();
+  })();
 }
