@@ -11,6 +11,13 @@ body {
   }  
 }
 
+@media only screen and (max-device-width: 480px) {
+  #content {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .meal {
   padding: 2em;
 }
