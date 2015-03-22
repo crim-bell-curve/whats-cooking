@@ -5,12 +5,12 @@ window.addEventListener('load', function() {
   d3.select('#day')
     .text(today)
   var colors = ['#BEA8E6', '#84C3C5', '#BD7B99', '#40586F']
-  function display(menu) {
+  function display(menu, name) {
     var content = d3.select('#content');
-    if (!menu) {
-      content.append('p').text('NOT AVAILABLE. THANKS SODEXO...')
-    }
     var count = 0
+    content.append('h1')
+      .text(name)
+      .style({'text-align': 'center', 'font-size': 50, 'background-color': colors[count++]})
     for (var meal in menu) {
       content.append('div')
         .attr('class', 'meal')
@@ -23,8 +23,8 @@ window.addEventListener('load', function() {
       for (var station in menu[meal]) {
         stat = station.replace(/\//g, '');
         m.append('div')
-         .attr('class', meal)
-         .attr('id', stat)
+          .attr('class', meal)
+          .attr('id', stat)
         var s = d3.select('#' + stat)
         s.append('p')
           .text(station)
@@ -36,21 +36,21 @@ window.addEventListener('load', function() {
     }
   }
 
-  if (typeof caf !== 'undefined') {
-    display(caf)
-  } else {
-    d3.select('#content')
-      .append('p')
-      .text('CAF NOT AVAILABLE. THANKS SODEXO...')
-      .style('font-size', 50)
-  }
-
   if (typeof sadler !== 'undefined') {
-    display(sadler)
+    display(sadler, 'Sadler')
   } else {
     d3.select('#content')
       .append('p')
       .text('SADLER NOT AVAILABLE. THANKS SODEXO...')
-      .style('font-size', 50)
+      .style({'font-size': 50, 'text-align': 'center', 'background-color': '#000', 'color': '#fff'})
+  }
+
+  if (typeof caf !== 'undefined') {
+    display(caf, 'Caf')
+  } else {
+    d3.select('#content')
+      .append('p')
+      .text('CAF NOT AVAILABLE. THANKS SODEXO...')
+      .style({'font-size': 50, 'text-align': 'center', 'background-color': '#000', 'color': '#fff'})
   }
 });
