@@ -28,9 +28,11 @@ window.addEventListener('load', function() {
         var s = d3.select('#' + stat)
         s.append('p')
           .text(station)
-          .style('color', 'fff')
+          .style({'color': 'fff', 'font-size': '1.7em'})
         menu[meal][station].forEach(function(item) {
-          s.append('p').text(item);
+          s.append('p')
+            .text(item)
+            .style({'font-size': '1.4em'})
         });
       }
     }
