@@ -27,8 +27,8 @@ function getURL(dhall, callback) {
           });
           if (range[1] - range[0] < 0) {
             // its that time of the month
-            // just fucking choose anythin at this point...
-            range[0] = 1, range[1] = 31;
+            if (t > range[0]) range[1] = 32
+            else range[0] = 0
           }
           for (var i = range[0]; i <= range[1]; i++) {
             if (i == t) {
