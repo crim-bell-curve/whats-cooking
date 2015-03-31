@@ -19,14 +19,20 @@ function getURL(dhall, callback) {
     done: function(errors, window) {
       $ = window.$;
       var found = false;
-      $('#accordion_20242 a').each(function() {
+      $('#accordion_20242 a').each(function(i) {
         if (found) return;
         if ($(this).attr('href') !== '#') {
           var range = $(this).text().trim().split('-').map(function(date) {
             return Number(date.split('/')[1]);
-          })
+          });
+          if (range[1] - range[0] < 0) {
+            // its that time of the month
+            // just fucking choose anythin at this point...
+            range[0] = 1, range[1] = 31;
+          }
           for (var i = range[0]; i <= range[1]; i++) {
             if (i == t) {
+              console.log($(this).attr('href'));
               callback(null, 'https://dining.wm.edu' + $(this).attr('href'));
               found = true;
               break;         
