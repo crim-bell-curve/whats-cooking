@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Loading What's Cooking</title>
+  <link rel='stylesheet' type='text/css' href='css/web_fonts/lane-narrow_regular_macroman/stylesheet.css'>
+  <style>
+    body {
+      background-color: #84C3C5;
+      font-family: lane_-_narrowregular;
+    }
+    img {
+      margin-top: 5%;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      width: 20%;
+      line-height: 50%;
+    }
+    p {
+      font-size: 6em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <img src="img/loading.svg" alt="Loading icon" />
+    <p>Wait</p>
+  </div>
+  <script>
+    window.setTimeout(function() {
+      location.reload()
+    }, 6000);
+  </script>
+</body>
+</html>
