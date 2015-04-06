@@ -6,25 +6,26 @@ var express = require('express'),
     now = new Date(),
     today = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'][ now.getDay() ];
 
-var log = JSON.parse(fs.readFileSync(__dirname + '/data/log.json'));
-
-if (today != log.current) {
-  var getURL = require('./src/getURL.js'),
-      scrape = require('./src/scraper.js');
-  
-  ['caf', 'sadler'].forEach(function(hall) {
-    getURL(hall, function(err, url) {
-      scrape(hall,url);
-      console.log('done scraping ' + hall)
-    })
-  })
-}
+app.get('/', function(req, res) {
+  fs.readFile(__dirname + '/data/log.json', {encoding:'utf8'}, function(err, data) {
+    var log = JSON.parse(data);
+    if (today != log.current) {
+      res.sendFile(__dirname + '/loading.html');
+      var getURL = require('./src/getURL.js'),
+          scrape = require('./src/scraper.js');
+      ['caf', 'sadler'].forEach(function(hall) {
+        getURL(hall, function(err, url) {
+          scrape(hall,url);
+          console.log('done scraping ' + hall);
+        });
+      });
+    } else {
+      res.sendFile(__dirname + '/index.html');
+    }
+  });
+});
 
 app.use(express.static(__dirname + '/'));
-
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
 
 var port = process.env.PORT || 5000;
 var server = app.listen(port, function() {
