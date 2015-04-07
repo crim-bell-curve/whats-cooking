@@ -42,8 +42,12 @@ function scrape(dhall, url) {
             return;
           getMeal(m);
         });
-        fs.writeFileSync(__dirname + '/../data/' + dhall + '.js', 'var caf = ' + JSON.stringify(out));
-        fs.writeFileSync(__dirname + '/../data/log.json', JSON.stringify({current: today}));
+        fs.writeFile(__dirname + '/../data/' + dhall + '.js', 'var caf = ' + JSON.stringify(out), function(err) {
+          if (err) throw err;
+          fs.writeFileSync(__dirname + '/../data/log.json', JSON.stringify({current: today}));
+          console.log('Done scraping ' + dhall + ', ya\'ll!')  
+        });
+        
       }
     })
   })();

@@ -14,9 +14,8 @@ app.get('/', function(req, res) {
       var getURL = require('./src/getURL.js'),
           scrape = require('./src/scraper.js');
       ['caf', 'sadler'].forEach(function(hall) {
-        getURL(hall, function(err, url) {
+        getURL(hall, function(err, url) { 
           scrape(hall,url);
-          console.log('done scraping ' + hall);
         });
       });
     } else {
